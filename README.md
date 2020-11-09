@@ -29,8 +29,8 @@ from random import random
   * A typical use case would be lottery numbers.
 ```python
 import random
-# Inside the random library we have a function called random which we can execute.
-print(random.random()) # This will print a random number
+# Inside the random library we have a function called random which we can execute to return a float between 0 and 1
+print(random.random())
 
 # We can use another method randint to get a random integer between a specified range, in this case 1 and 100
 print(random.randint(1,100))
@@ -51,6 +51,13 @@ print(math.ceil(num_float)) #Prints 24
 * Within math, we also have ```pi``` which as the name suggests, return the value of pi.
 ```python
 print(math.pi) # Returns pi
+```
+
+3. ```datetime```
+* We can use the datetime library to get the date and time of this exact moment. 
+```python
+import datetime
+print(datetime.datetime.today())
 ```
 
 # Task 1
@@ -95,18 +102,11 @@ import math, datetime,sys
 ```python
 print(os.uname())
 ```
-3. 
+3. CPU Count- Counts the number of CPUs in our system OS. This is useful in determinng whether the system meets any pre-requisites for a certain software. 
 ```python
-
-#
-# # Lets count the number of CPUs in our system OS
-# # To download, we have pre-requisites
-# print(os.cpu_count()) # Returns 4
-#
-# # We have imported datetime
-# # We can get the date and time of today using the command below.
-# print(datetime.datetime.today())
+print(os.cpu_count()) # Returns 4
 ```
+
 
 
 
@@ -120,15 +120,6 @@ print(os.uname())
             return sys.path                                               
 print(current_system_path())  
 ```
-
-
-
-
-
-
-
-
-
 
 
 # APIs in Python          
@@ -193,3 +184,14 @@ def check_response_code():
         print("Oops something went wrong, please try later")
 check_response_code()
 ```
+
+
+# JSON Basics
+* Java Script Object Notation
+* Uses Case- browser data
+* Dta is in key, value pairs
+* JSON encoding form a Dictionary
+* JSON decoding into a dictionary
+* Handling files
+* Writing to files
+* Reading from files 
