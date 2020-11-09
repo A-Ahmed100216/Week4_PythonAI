@@ -57,11 +57,16 @@ print(current_system_path())
 ```
 
 
-# What is pip
+
+# APIs in Python          
+* Application Programming Interface     
+* Packages help us use the code internally, connect to web APIs. APIs provide us with a connection interfaces.  
+[API Diagram](/API%20diagram.png)
+#£ What is pip
 * Package manager for Python.
 * We use it to install external packages such as requests. 
 * syntax: ```pip install <name_of_package>```
 
-# APIs in Python
-* Application Programming Interface 
-* Packages help us use the code internally, connect to web APIs. APIs provide us with a connection interfaces. 
+
+
+
