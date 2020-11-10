@@ -280,7 +280,9 @@ with open("new_json_file.json") as jsonfile:
 
 ## Exception Handling
 * We can use ```try```, ```except```, and ```finally``` keywords for the purposes of handling errors and reporting back in a user-friendly fashion.
-* Common use cases for these are error testing and resolving
+* Common use cases for these are error testing and resolving.
+* We use these block when we expect an exception from the python interpreter.
+* Why - This helps us handle the errors or exceptions and add customised message as well as make a decision based on customer needs. 
 * **Try** - Lets you test for errors
 * **Except** - Handle the error
 * **Raise** - Raises an error
@@ -291,4 +293,41 @@ try:
     <action>
 except:
     <action>
+```
+
+### Examples - Iteration 1
+* We will have a look at the practical use cases and implementation of ```try```, ```except```, ```raise```, and ```finally```.
+* We can use ```try``` block when we know an error will be thrown. In this example, the file does not exist so this will throw an error. 
+* A ```try``` must be used in conjunction with an ```except```
+```python
+
+# try:
+#     file = open("orders.text")
+# except:
+#     print("Error")
+```
+
+### Examples - Iteration 2
+* Once we know the error, we can use this in the ```except``` block.
+```python
+
+
+try:
+    file = open("orders.text")
+except FileNotFoundError as errmsg:
+    print("Sorry the file you are looking for does not exist.\n" + str(errmsg))
+
+```
+
+### Examples - Iteration 3
+* If we still want user to know actual exception together with our customer message, we can raise. This will return the exact error message. 
+* Finally will execute regardless of the previous conditions. 
+```python
+try:
+    file = open("orders.text")
+except FileNotFoundError as errmsg:
+    print("Alert something went wrong.\n" + str(errmsg))
+    raise #Will send back the actual exception
+finally: 
+    print("Hope you had a good customer experience ")
 ```
