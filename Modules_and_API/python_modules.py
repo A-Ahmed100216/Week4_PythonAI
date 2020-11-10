@@ -1,9 +1,7 @@
 import random
 import math
-# Inside the random library we have a function called random which we can execute.
 # The random method is a python library which we can use for importing.
-# Generate a float number between 0 and 1.
-print(random.random()) # This will print a random number
+print(random.random()) # This will generate a float number between 0 and 1.
 
 # We can use another method randint to get a random integer between a specified range, in this case 1 and 100
 print(random.randint(1,100))

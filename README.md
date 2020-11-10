@@ -109,8 +109,6 @@ print(os.cpu_count()) # Returns 4
 
 
 
-
-
 * To find out the system path.
 * We can create a customised method and utilise the built in functionality at the same time.
 * Why? Not everyone is technical, we need to explain in laymen terms exactly what they are looking at. 
@@ -126,12 +124,12 @@ print(current_system_path())
 * Application Programming Interface     
 * Packages help us use the code internally, connect to web APIs. APIs provide us with a connection interfaces.  
 ![API Diagram](/API%20diagram.png)
-## What is pip
+#### What is pip
 * Package manager for Python.
 * We use it to install external packages such as requests. 
 * syntax: ```pip install <name_of_package>```
 
-# Request
+## Request
 An example of a package we can install is the requests package. This enables us to scrape live data from a website.
 ```python
 
@@ -154,7 +152,7 @@ else:
     print("Ooops something went wrong, please try later")
 ```
 
-## Implement DRY
+### Implement DRY
 * A key principle of Python is Don't Repeat Yourself. Therefore we can create a function to store the above code. This simply entails encapsulating the block of code in a a def statement:
 ```python
 def check_response_code():
@@ -169,7 +167,7 @@ def check_response_code():
 check_response_code()
 ```
 
-## Why use the requests library?
+### Why use the requests library?
 In the status code example, we can get rid of the numbers and the code will still run.
 * This is because the requests module is designed such that it will evaluate to **True if the status code is between 200-400**, otherwise False. 
 * This is the built in functionality provided within the requests library.
@@ -185,13 +183,112 @@ def check_response_code():
 check_response_code()
 ```
 
+## Task 2 - Postcode Task 
+1. Get a user to input their postcode
+2. Concatenate the postcode onto the postcode API and determine the status code.
+3. If the postcode is valid, return the result and longitude and latitude of the postcode. 
+
+```python
+# Import relevant libraries
+import requests
+import json
+from emoji import emojize
+
+# Get a user to input their postcode
+argument=input("Please enter your postcode: ")
+# Concatenate onto the get request
+live_response=requests.get("http://api.postcodes.io/postcodes/" + argument)
+
+# Create a function to check the status code
+def check_response_code():
+    # If the function code is 200, postcode has been identified
+    if live_response.status_code==200:
+        print("Status Code: " + str(live_response.status_code) +". This postcode exists." +  emojize(" :thumbs_up:"))
+    # If status code is 400 or 404, postcode is incorrect or has not been entered
+    elif live_response.status_code==404 or live_response.status_code==400:
+        print("Status Code: "+ str(live_response.status_code) + ". This postcode is incorrect. Please try again." + emojize(" :thumbs_down:"))
+    else:
+        print("Oops something went wrong, please try later")
+
+# create a function that returns the longitude and latitude of the given postcode
+def long_and_lat():
+    # Convert bytes into dictionary format
+    content_dictionary = json.loads(live_response.content)
+    # If the status code is 200, contents can be retrieved
+    if live_response.status_code==200:
+        # Dictionary indexing to identify the result, longitude and latitude.
+        result = content_dictionary['result']
+        longitude = content_dictionary['result']['longitude']
+        latitude = content_dictionary['result']['latitude']
+        # Return as a formatted string
+        return ("RESULT: {} \n"
+                "Longitude: {}\n"
+                "Latitude: {}".format(result,longitude,latitude))
+    # Otherwise, return error message.
+    else:
+        return "Cannot determine latitude and longitude from an invalid input"
+
+
+# Call the functions
+check_response_code()
+print(long_and_lat())
+```
 
 # JSON Basics
 * Java Script Object Notation
-* Uses Case- browser data
-* Dta is in key, value pairs
-* JSON encoding form a Dictionary
-* JSON decoding into a dictionary
-* Handling files
-* Writing to files
-* Reading from files 
+* JSON is used heavily in industry. 
+* Uses Case- browser data is typically in JSON format
+* Data is in key, value pairs
+* Reading files, writing to files, parsing and covering data are the most commonly utilised options.
+* JSON encoding - from a Dictionary
+* JSON decoding - into a dictionary
+## JSON Methods
+JSON like other libraries has many functions including:
+1. json.dump() - serialises json to a formatted string
+2. json.dump() - creates a stream object and accepts a file object to write to.
+
+```python
+# Import the json module 
+import json
+
+# Creating a dictionary and stored in variable called car_data
+car_data = {"name":"tesla", "engine":"electric"}
+print(type(car_data)) # This will return dictionary
+
+
+# Using the dumps() method- converts dictionary to string
+car_data_json_string = json.dumps(car_data)
+print(car_data_json_string)
+print(type(car_data_json_string)) # Return string
+```
+3. Encoding - We can encode from a dictionary and write to a new file with the dump()
+
+```python
+with open("new_json_file.json","w") as jsonfile:
+     json.dump(car_data,jsonfile)
+```
+4. Decoding - We can decode and read a file using Load() which copies the data and stores in a variable. 
+```python
+with open("new_json_file.json") as jsonfile:
+    # Load() - copies the data and stores into a variable.
+    car = json.load(jsonfile) 
+    print(car)
+    print(type(car))
+    print(car['name'])
+    print(car['engine'])
+```
+
+## Exception Handling
+* We can use ```try```, ```except```, and ```finally``` keywords for the purposes of handling errors and reporting back in a user-friendly fashion.
+* Common use cases for these are error testing and resolving
+* **Try** - Lets you test for errors
+* **Except** - Handle the error
+* **Raise** - Raises an error
+* **Finally** - Execute the code, regardless of the try and except blocks.
+* Syntax:
+```python
+try:
+    <action>
+except:
+    <action>
+```
