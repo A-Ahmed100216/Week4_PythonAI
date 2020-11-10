@@ -7,7 +7,7 @@ from emoji import emojize
 live_response=requests.get("https://www.bbc.co.uk/")
 # Print the status code. Returns an integer
 print(live_response.status_code)
-# We can also return the headers on this websits and the content.
+# We can also return the headers on this websites and the content.
 print(live_response.headers)
 print(type(live_response.content))
 

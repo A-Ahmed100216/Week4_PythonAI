@@ -2,6 +2,7 @@
 * ***Python Library and Built-in Functions****
 * ***What is pip and how do we use it?***
 * ***API's with Python***
+* ***JSON Basics***
 
 
 # Python Modules
@@ -102,23 +103,18 @@ import math, datetime,sys
 ```python
 print(os.uname())
 ```
-3. CPU Count- Counts the number of CPUs in our system OS. This is useful in determinng whether the system meets any pre-requisites for a certain software. 
+3. CPU Count- Counts the number of CPUs in our system OS. This is useful in determining whether the system meets any pre-requisites for a certain software. 
 ```python
 print(os.cpu_count()) # Returns 4
 ```
+4. System Path - Returns the current directory. Requires the ```sys``` library. For this example, a function has been created to demonstrate the built in functionality and print a statement explaining what the command does. Why? Not everyone is technical, we need to explain in Layman's terms exactly what they are looking at.
 
-
-
-* To find out the system path.
-* We can create a customised method and utilise the built in functionality at the same time.
-* Why? Not everyone is technical, we need to explain in laymen terms exactly what they are looking at. 
 ```python
       def current_system_path():
             print(" This is your current directory ")   
             return sys.path                                               
 print(current_system_path())  
 ```
-
 
 # APIs in Python          
 * Application Programming Interface     
@@ -129,10 +125,11 @@ print(current_system_path())
 * We use it to install external packages such as requests. 
 * syntax: ```pip install <name_of_package>```
 
-## Request
-An example of a package we can install is the requests package. This enables us to scrape live data from a website.
+## Requests
+* An example of a package we can install is the requests package. This enables us to scrape live data from a website.
+* We install using the ```pip install requests``` command. Once we have done this, we can import the requests package. 
+* Note, the emoji package has also been installed and imported. This allows us to use emojis. 
 ```python
-
 import requests
 from emoji import emojize
 
@@ -144,7 +141,7 @@ print(live_response.status_code)
 * 404 tells us that the website is not working. 
 * Many more status codes exist but these can easily be looked up. 
 * We can use an if statement to add more detail and tell the user what the 200 means.
-* Note, the emoji package has also been installed and imported. This allows us to use emojis. 
+
 ```python
 if live_response.status_code==200:
     print("This website is live. Status code: " + str(live_response.status_code) + emojize((" :thumbs_up:")))
@@ -169,7 +166,7 @@ check_response_code()
 
 ### Why use the requests library?
 In the status code example, we can get rid of the numbers and the code will still run.
-* This is because the requests module is designed such that it will evaluate to **True if the status code is between 200-400**, otherwise False. 
+* This is because the requests module is designed such that it will evaluate to ****True if the status code is between 200-400****, otherwise False. 
 * This is the built in functionality provided within the requests library.
 ```python
 # Why do we use the requests module?
@@ -300,7 +297,6 @@ except:
 * We can use ```try``` block when we know an error will be thrown. In this example, the file does not exist so this will throw an error. 
 * A ```try``` must be used in conjunction with an ```except```
 ```python
-
 # try:
 #     file = open("orders.text")
 # except:
