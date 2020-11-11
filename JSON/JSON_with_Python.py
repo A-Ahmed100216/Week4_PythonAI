@@ -13,8 +13,8 @@ print(type(car_data_json_string))  #Returns string
 with open("new_json_file.json", "w") as jsonfile:
      json.dump(car_data,jsonfile)
 
-# Load() - copies the data and stores into a variable.
-with open("new_json_file.json") as jsonfile:
+# # Load() - copies the data and stores into a variable.
+with open("JSON/new_json_file.json") as jsonfile:
     car = json.load(jsonfile) # Load() - copies the data and stores into a variable.
     print(car)
     print(type(car))
