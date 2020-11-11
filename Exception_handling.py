@@ -26,9 +26,3 @@ finally: # Will execute regardless of the above conditions
     print("Hope you had a good customer experience ")
 
 
-# TASK 1 - Implement exception handling to determine whether a file exists and if not, return an error message.
-try:
-    file = open("new_json_file.json")
-    print("Success")
-except FileNotFoundError as errmsg:
-    print("Sorry the file you are looking for does not exist.\n" + str(errmsg))

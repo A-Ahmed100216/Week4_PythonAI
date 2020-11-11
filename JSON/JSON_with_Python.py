@@ -1,7 +1,7 @@
 # Import JSON library
 import json
 
-# # Creating a dictionary and stored in variable called car_data
+# Creating a dictionary and stored in variable called car_data
 car_data = {"name":"tesla", "engine":"electric"}
 
 # json.dumps() - serialises json to a formatted string
@@ -10,7 +10,6 @@ print(car_data_json_string)
 print(type(car_data_json_string))  #Returns string
 
 # json.dump() - creates a stream object and accepts a file object to write to
-# This is how we can encode form a dictionary and write to a file, w.
 with open("new_json_file.json", "w") as jsonfile:
      json.dump(car_data,jsonfile)
 
@@ -22,3 +21,11 @@ with open("new_json_file.json") as jsonfile:
     print(car['name'])
     print(car['engine'])
 
+
+
+# TASK 1 - Implement exception handling to determine whether a file exists and if not, return an error message.
+try:
+    file = open("JSON/new_json_file.json")
+    print("Success")
+except FileNotFoundError as errmsg:
+    print("Sorry the file you are looking for does not exist.\n" + str(errmsg))

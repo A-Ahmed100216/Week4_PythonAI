@@ -261,12 +261,12 @@ print(type(car_data_json_string)) # Return string
 3. Encoding - We can encode from a dictionary and write to a new file with the dump()
 
 ```python
-with open("new_json_file.json","w") as jsonfile:
+with open("JSON/new_json_file.json","w") as jsonfile:
      json.dump(car_data,jsonfile)
 ```
 4. Decoding - We can decode and read a file using Load() which copies the data and stores in a variable. 
 ```python
-with open("new_json_file.json") as jsonfile:
+with open("JSON/new_json_file.json") as jsonfile:
     # Load() - copies the data and stores into a variable.
     car = json.load(jsonfile) 
     print(car)
